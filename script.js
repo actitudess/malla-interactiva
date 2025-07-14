@@ -62,80 +62,24 @@ document.addEventListener("DOMContentLoaded", () => {
     "Internado Profesional Nutricion Comunitaria": ["Internado Profesional Nutrición Comunitaria Interescolar"]
   };
 
-  // Guardar y cargar estado con localStorage
+  // Cargar estado guardado o iniciar vacío
   const savedState = JSON.parse(localStorage.getItem("materiasEstado")) || {};
+  const materiasEstado = { ...savedState };
 
-  const materiasEstado = {...savedState};
-
+  // Verifica que todas las materias prerequisito estén aprobadas
   function puedeDesbloquear(materia) {
     return materias[materia].every(req => materiasEstado[req]);
   }
 
   function actualizarEstado() {
     Object.keys(materiasEstado).forEach(materia => {
-      const boton = document.querySelector(`[data-materia="${materia}"] button`);
+      const contenedor = document.querySelector(`[data-materia="${materia}"]`);
+      if (!contenedor) return;
+      const boton = contenedor.querySelector("button");
       if (!boton) return;
 
       if (materiasEstado[materia]) {
         boton.classList.add("aprobada");
         boton.textContent = "Materia aprobada ✓";
         boton.disabled = false;
-      } else {
-        // Se bloquea si no cumple requisitos
-        if (puedeDesbloquear(materia)) {
-          boton.disabled = false;
-          boton.classList.remove("aprobada");
-          boton.textContent = "Aprobar materia";
-        } else {
-          boton.disabled = true;
-          boton.classList.remove("aprobada");
-          boton.textContent = "Bloqueada";
-        }
-      }
-    });
-  }
-
-  // Al aprobar o desaprobar, actualizar estado y guardar
-  function toggleAprobada(materia) {
-    if (materiasEstado[materia]) {
-      // Si está aprobada, la desmarcamos
-      materiasEstado[materia] = false;
-
-      // Además, desmarcamos las materias que dependen directa o indirectamente de esta materia
-      desmarcarDependientes(materia);
-    } else {
-      // Si no estaba aprobada, la aprobamos solo si puede desbloquear
-      if (puedeDesbloquear(materia)) {
-        materiasEstado[materia] = true;
-      } else {
-        return; // No se puede aprobar si no cumple requisitos
-      }
-    }
-    actualizarEstado();
-    localStorage.setItem("materiasEstado", JSON.stringify(materiasEstado));
-  }
-
-  // Función recursiva para desmarcar dependientes
-  function desmarcarDependientes(materia) {
-    Object.keys(materias).forEach(m => {
-      if (materias[m].includes(materia) && materiasEstado[m]) {
-        materiasEstado[m] = false;
-        desmarcarDependientes(m);
-      }
-    });
-  }
-
-  // Crear la UI con botones y eventos
-  Object.keys(materias).forEach(materia => {
-    const contenedor = document.querySelector(`[data-materia="${materia}"]`);
-    if (!contenedor) return;
-
-    const boton = document.createElement("button");
-    boton.textContent = "Aprobar materia";
-    boton.addEventListener("click", () => toggleAprobada(materia));
-
-    contenedor.appendChild(boton);
-  });
-
-  actualizarEstado();
-});
+        contenedor.classList
