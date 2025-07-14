@@ -1,85 +1,91 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const materias = {
-    "Razonamiento Lógico Matemático": [],
-    "Introducción a la Nutrición y Dietética": [],
-    "Bases de la Química": [],
-    "Psicología de la Salud": [],
-    "Taller Integrado en Ciencias": [],
-    "Taller de Competencias Comunicativas": [],
+// Datos de materias y requisitos
+const materias = [
+  { id: "rlogmat", nombre: "Razonamiento Lógico Matemático", semestre: 1, reqs: [] },
+  { id: "intro_nutri", nombre: "Introducción a la Nutrición y Dietética", semestre: 1, reqs: [] },
+  { id: "bases_quimica", nombre: "Bases de la Química", semestre: 1, reqs: [] },
+  { id: "psic_salud", nombre: "Psicología de la Salud", semestre: 1, reqs: [] },
+  { id: "taller_cien", nombre: "Taller Integrado en Ciencias", semestre: 1, reqs: [] },
+  { id: "taller_com", nombre: "Taller de Competencias Comunicativas", semestre: 1, reqs: [] },
 
-    "Ciencias de los Alimentos": [],
-    "Biología Celular": ["Introducción a la Nutrición y Dietética", "Bases de la Química"],
-    "Química de las biomoléculas": ["Introducción a la Nutrición y Dietética", "Bases de la Química"],
-    "Atención Básica de Urgencia": [],
-    "Ingles Básico I": [],
-    "Electivo Formación General I": ["Taller de Competencias Comunicativas"],
+  { id: "ciencias_alim", nombre: "Ciencias de los Alimentos", semestre: 2, reqs: [] },
+  { id: "bio_celular", nombre: "Biología Celular", semestre: 2, reqs: ["intro_nutri", "bases_quimica"] },
+  { id: "quim_biomolec", nombre: "Química de las biomoléculas", semestre: 2, reqs: ["intro_nutri", "bases_quimica"] },
+  { id: "atencion_urg", nombre: "Atención Básica de Urgencia", semestre: 2, reqs: [] },
+  { id: "ingles_i", nombre: "Inglés Básico I", semestre: 2, reqs: [] },
+  { id: "electivo_fg_i", nombre: "Electivo Formación General I", semestre: 2, reqs: ["taller_com"] },
 
-    "Microbiología y Parasitología Alimentaria": ["Ciencias de los Alimentos"],
-    "Anatomofisiologia General": ["Biología Celular", "Química de las biomoléculas"],
-    "Bioquímica Nutricional I": ["Biología Celular", "Química de las biomoléculas"],
-    "Salud y Sociedad": [],
-    "Ingles Básico II": ["Ingles Básico I"],
-    "Electivo Formación General II": ["Electivo Formación General I"],
+  { id: "micro_paras", nombre: "Microbiología y Parasitología Alimentaria", semestre: 3, reqs: ["ciencias_alim"] },
+  { id: "anat_general", nombre: "Anatomofisiología General", semestre: 3, reqs: ["bio_celular", "quim_biomolec"] },
+  { id: "bioquim_i", nombre: "Bioquímica Nutricional I", semestre: 3, reqs: ["bio_celular", "quim_biomolec"] },
+  { id: "salud_sociedad", nombre: "Salud y Sociedad", semestre: 3, reqs: [] },
+  { id: "ingles_ii", nombre: "Inglés Básico II", semestre: 3, reqs: ["ingles_i"] },
+  { id: "electivo_fg_ii", nombre: "Electivo Formación General II", semestre: 3, reqs: ["electivo_fg_i"] },
 
-    "Epidemiología y Estadística": ["Razonamiento Lógico Matemático"],
-    "Higiene e Inocuidad Alimentaria": ["Microbiología y Parasitología Alimentaria"],
-    "Bioquímica Nutricional II": ["Bioquímica Nutricional I"],
-    "Fisiología Nutricional y del Comportamiento Alimentario": ["Anatomofisiologia General"],
-    "Antropología Alimentaria": [],
-    "Electivo Formación General III": ["Electivo Formación General II"],
+  { id: "epid_estad", nombre: "Epidemiología y Estadística", semestre: 4, reqs: ["rlogmat"] },
+  { id: "higiene_inocuidad", nombre: "Higiene e Inocuidad Alimentaria", semestre: 4, reqs: ["micro_paras"] },
+  { id: "bioquim_ii", nombre: "Bioquímica Nutricional II", semestre: 4, reqs: ["bioquim_i"] },
+  { id: "fisiol_nutri", nombre: "Fisiología Nutricional y del Comportamiento Alimentario", semestre: 4, reqs: ["anat_general"] },
+  { id: "antrop_alim", nombre: "Antropología Alimentaria", semestre: 4, reqs: [] },
+  { id: "electivo_fg_iii", nombre: "Electivo Formación General III", semestre: 4, reqs: ["electivo_fg_ii"] },
 
-    "Bioética": ["Epidemiología y Estadística"],
-    "Bioquímica de los Alimentos y Bromatología": ["Higiene e Inocuidad Alimentaria"],
-    "Técnicas Dietéticas y Planificación Alimentaría": ["Higiene e Inocuidad Alimentaria"],
-    "Evaluación Nutricional I": ["Bioquímica Nutricional II", "Fisiología Nutricional y del Comportamiento Alimentario"],
-    "Educación para Salud": ["Antropología Alimentaria"],
-    "Persona y Sentido": ["Electivo Formación General III"],
+  { id: "bioetica", nombre: "Bioética", semestre: 5, reqs: ["epid_estad"] },
+  { id: "bioquim_broma", nombre: "Bioquímica de los Alimentos y Bromatología", semestre: 5, reqs: ["higiene_inocuidad"] },
+  { id: "tec_dietetica", nombre: "Técnicas Dietéticas y Planificación Alimentaria", semestre: 5, reqs: ["higiene_inocuidad"] },
+  { id: "eval_nutri_i", nombre: "Evaluación Nutricional I", semestre: 5, reqs: ["bioquim_ii", "fisiol_nutri"] },
+  { id: "edu_salud", nombre: "Educación para Salud", semestre: 5, reqs: ["antrop_alim"] },
+  { id: "persona_sentido", nombre: "Persona y Sentido", semestre: 5, reqs: ["electivo_fg_iii"] },
 
-    "Metodología de la investigación": ["Bioética"],
-    "Gestión de Unidades de Producción Alimentaria I": ["Bioquímica de los Alimentos y Bromatología", "Técnicas Dietéticas y Planificación Alimentaría"],
-    "Fisiopatología y Dietoterapia I": ["Evaluación Nutricional I"],
-    "Evaluación Nutricional II": ["Evaluación Nutricional I"],
-    "Alimentación Normal en el Curso de la Vida": ["Educación para Salud"],
-    "Electivo I": ["Persona y Sentido"],
+  { id: "metod_inv", nombre: "Metodología de la investigación", semestre: 6, reqs: ["bioetica"] },
+  { id: "gest_alim_i", nombre: "Gestión de Unidades de Producción Alimentaria I", semestre: 6, reqs: ["bioquim_broma", "tec_dietetica"] },
+  { id: "fisio_diet_i", nombre: "Fisiopatología y Dietoterapia I", semestre: 6, reqs: ["eval_nutri_i"] },
+  { id: "eval_nutri_ii", nombre: "Evaluación Nutricional II", semestre: 6, reqs: ["eval_nutri_i"] },
+  { id: "alim_normal_vida", nombre: "Alimentación Normal en el Curso de la Vida", semestre: 6, reqs: ["edu_salud"] },
+  { id: "electivo_i", nombre: "Electivo I", semestre: 6, reqs: ["persona_sentido"] },
 
-    "Seminario de Investigación I": ["Metodología de la investigación"],
-    "Gestión de Unidades de Producción Alimentaría II": ["Gestión de Unidades de Producción Alimentaria I"],
-    "Fisiopatología y Dietoterapia II": ["Fisiopatología y Dietoterapia I"],
-    "Diseño de Proyectos de Intervención en Salud": ["Alimentación Normal en el Curso de la Vida"],
-    "Políticas y Programas de Salud": ["Alimentación Normal en el Curso de la Vida"],
-    "Electivo II": ["Electivo I"],
+  { id: "semin_inv_i", nombre: "Seminario de Investigación I", semestre: 7, reqs: ["metod_inv"] },
+  { id: "gest_alim_ii", nombre: "Gestión de Unidades de Producción Alimentaria II", semestre: 7, reqs: ["gest_alim_i"] },
+  { id: "fisio_diet_ii", nombre: "Fisiopatología y Dietoterapia II", semestre: 7, reqs: ["fisio_diet_i"] },
+  { id: "disen_proy_salud", nombre: "Diseño de Proyectos de Intervención en Salud", semestre: 7, reqs: ["alim_normal_vida"] },
+  { id: "polit_prog_salud", nombre: "Políticas y Programas de Salud", semestre: 7, reqs: ["alim_normal_vida"] },
+  { id: "electivo_ii", nombre: "Electivo II", semestre: 7, reqs: ["electivo_i"] },
 
-    "Seminario de Investigación II": ["Seminario de Investigación I"],
-    "Practica de Gestión de Unidades de Producción Alimentaria": ["Gestión de Unidades de Producción Alimentaría II"],
-    "Fisiopatología y Dietoterapia III": ["Fisiopatología y Dietoterapia II"],
-    "Intervención Alimentaría Nutricional": ["Diseño de Proyectos de Intervención en Salud", "Políticas y Programas de Salud"],
-    "Electivo III": ["Electivo II"],
+  { id: "semin_inv_ii", nombre: "Seminario de Investigación II", semestre: 8, reqs: ["semin_inv_i"] },
+  { id: "pract_gest_alim", nombre: "Práctica de Gestión de Unidades de Producción Alimentaria", semestre: 8, reqs: ["gest_alim_ii"] },
+  { id: "fisio_diet_iii", nombre: "Fisiopatología y Dietoterapia III", semestre: 8, reqs: ["fisio_diet_ii"] },
+  { id: "interv_alim_nutri", nombre: "Intervención Alimentaria Nutricional", semestre: 8, reqs: ["disen_proy_salud", "polit_prog_salud"] },
+  { id: "electivo_iii", nombre: "Electivo III", semestre: 8, reqs: ["electivo_ii"] },
 
-    "Internado Profesional Nutrición Clínica": ["Fisiopatología y Dietoterapia III"],
-    "Internado Profesional Nutrición Comunitaria Interescolar": ["Intervención Alimentaría Nutricional"],
+  { id: "internado_clinica", nombre: "Internado Profesional Nutrición Clínica", semestre: 9, reqs: ["fisio_diet_iii"] },
+  { id: "internado_comunitaria", nombre: "Internado Profesional Nutrición Comunitaria Interescolar", semestre: 9, reqs: ["interv_alim_nutri"] },
 
-    "Internado Profesional Gestión de Unidades de Producción Alimentaría": ["Practica de Gestión de Unidades de Producción Alimentaria"],
-    "Internado Profesional Nutricion Comunitaria": ["Internado Profesional Nutrición Comunitaria Interescolar"]
-  };
+  { id: "internado_gestion", nombre: "Internado Profesional Gestión de Unidades de Producción Alimentaria", semestre: 10, reqs: ["pract_gest_alim"] },
+  { id: "internado_nutri_com", nombre: "Internado Profesional Nutrición Comunitaria", semestre: 10, reqs: ["internado_comunitaria"] },
+];
 
-  // Cargar estado guardado o iniciar vacío
-  const savedState = JSON.parse(localStorage.getItem("materiasEstado")) || {};
-  const materiasEstado = { ...savedState };
+// Estado de materias aprobadas guardado en localStorage (para mantener estado al recargar)
+let aprobadas = JSON.parse(localStorage.getItem("aprobadas") || "{}");
 
-  // Verifica que todas las materias prerequisito estén aprobadas
-  function puedeDesbloquear(materia) {
-    return materias[materia].every(req => materiasEstado[req]);
-  }
+// Crea la malla en el DOM
+const mallaContainer = document.getElementById("malla-container");
 
-  function actualizarEstado() {
-    Object.keys(materiasEstado).forEach(materia => {
-      const contenedor = document.querySelector(`[data-materia="${materia}"]`);
-      if (!contenedor) return;
-      const boton = contenedor.querySelector("button");
-      if (!boton) return;
+function puedeDesbloquear(materia) {
+  // Retorna true si todas las materias requisito están aprobadas
+  return materia.reqs.every(reqId => aprobadas[reqId]);
+}
 
-      if (materiasEstado[materia]) {
-        boton.classList.add("aprobada");
-        boton.textContent = "Materia aprobada ✓";
-        boton.disabled = false;
-        contenedor.classList
+function actualizarMalla() {
+  mallaContainer.innerHTML = "";
+  materias.forEach(materia => {
+    // Crear el div materia
+    const divMateria = document.createElement("div");
+    divMateria.classList.add("materia");
+    divMateria.id = materia.id;
+
+    // Ver si está aprobada
+    if (aprobadas[materia.id]) {
+      divMateria.classList.add("aprobada");
+    }
+
+    // Ver si está bloqueada (no cumple requisitos)
+    if (!puedeDesbloquear(materia) && !aprobadas[materia.id]) {
+      divMateria.classList
