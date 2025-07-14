@@ -1,4 +1,5 @@
 const materias = [
+  // --- PRIMER SEMESTRE ---
   { id: "rlogmat", nombre: "Razonamiento Lógico Matemático", semestre: 1, reqs: [] },
   { id: "intro_nutri", nombre: "Introducción a la Nutrición y Dietética", semestre: 1, reqs: [] },
   { id: "bases_quimica", nombre: "Bases de la Química", semestre: 1, reqs: [] },
@@ -6,62 +7,80 @@ const materias = [
   { id: "taller_cien", nombre: "Taller Integrado en Ciencias", semestre: 1, reqs: [] },
   { id: "taller_com", nombre: "Taller de Competencias Comunicativas", semestre: 1, reqs: [] },
 
+  // --- SEGUNDO SEMESTRE ---
   { id: "ciencias_alim", nombre: "Ciencias de los Alimentos", semestre: 2, reqs: [] },
   { id: "bio_celular", nombre: "Biología Celular", semestre: 2, reqs: ["intro_nutri", "bases_quimica"] },
-  { id: "quim_biomolec", nombre: "Química de las biomoléculas", semestre: 2, reqs: ["intro_nutri", "bases_quimica"] },
-  { id: "atencion_urg", nombre: "Atención Básica de Urgencia", semestre: 2, reqs: [] },
-  { id: "ingles_i", nombre: "Inglés Básico I", semestre: 2, reqs: [] },
-  { id: "electivo_fg_i", nombre: "Electivo Formación General I", semestre: 2, reqs: ["taller_com"] },
+  { id: "quim_biomol", nombre: "Química de las biomoléculas", semestre: 2, reqs: ["intro_nutri", "bases_quimica"] },
+  { id: "urgencia", nombre: "Atención Básica de Urgencia", semestre: 2, reqs: [] },
+  { id: "ingles1", nombre: "Inglés Básico I", semestre: 2, reqs: [] },
+  { id: "electivo1", nombre: "Electivo Formación General I", semestre: 2, reqs: ["taller_com"] },
 
+  // --- TERCER SEMESTRE ---
   { id: "micro_paras", nombre: "Microbiología y Parasitología Alimentaria", semestre: 3, reqs: ["ciencias_alim"] },
-  { id: "anat_general", nombre: "Anatomofisiología General", semestre: 3, reqs: ["bio_celular", "quim_biomolec"] },
-  { id: "bioquim_i", nombre: "Bioquímica Nutricional I", semestre: 3, reqs: ["bio_celular", "quim_biomolec"] },
-  { id: "salud_sociedad", nombre: "Salud y Sociedad", semestre: 3, reqs: [] },
-  { id: "ingles_ii", nombre: "Inglés Básico II", semestre: 3, reqs: ["ingles_i"] },
-  { id: "electivo_fg_ii", nombre: "Electivo Formación General II", semestre: 3, reqs: ["electivo_fg_i"] },
+  { id: "anato", nombre: "Anatomofisiología General", semestre: 3, reqs: ["bio_celular", "quim_biomol"] },
+  { id: "bioq1", nombre: "Bioquímica Nutricional I", semestre: 3, reqs: ["bio_celular", "quim_biomol"] },
+  { id: "salud_soc", nombre: "Salud y Sociedad", semestre: 3, reqs: [] },
+  { id: "ingles2", nombre: "Inglés Básico II", semestre: 3, reqs: ["ingles1"] },
+  { id: "electivo2", nombre: "Electivo Formación General II", semestre: 3, reqs: ["electivo1"] },
 
-  { id: "epid_estad", nombre: "Epidemiología y Estadística", semestre: 4, reqs: ["rlogmat"] },
-  { id: "higiene_inocuidad", nombre: "Higiene e Inocuidad Alimentaria", semestre: 4, reqs: ["micro_paras"] },
-  { id: "bioquim_ii", nombre: "Bioquímica Nutricional II", semestre: 4, reqs: ["bioquim_i"] },
-  { id: "fisiol_nutri", nombre: "Fisiología Nutricional y del Comportamiento Alimentario", semestre: 4, reqs: ["anat_general"] },
-  { id: "antrop_alim", nombre: "Antropología Alimentaria", semestre: 4, reqs: [] },
-  { id: "electivo_fg_iii", nombre: "Electivo Formación General III", semestre: 4, reqs: ["electivo_fg_ii"] },
+  // --- CUARTO SEMESTRE ---
+  { id: "epid", nombre: "Epidemiología y Estadística", semestre: 4, reqs: ["rlogmat"] },
+  { id: "higiene", nombre: "Higiene e Inocuidad Alimentaria", semestre: 4, reqs: ["micro_paras"] },
+  { id: "bioq2", nombre: "Bioquímica Nutricional II", semestre: 4, reqs: ["bioq1"] },
+  { id: "fisio_nut", nombre: "Fisiología Nutricional y del Comportamiento Alimentario", semestre: 4, reqs: ["anato"] },
+  { id: "antro_alim", nombre: "Antropología Alimentaria", semestre: 4, reqs: [] },
+  { id: "electivo3", nombre: "Electivo Formación General III", semestre: 4, reqs: ["electivo2"] },
 
-  { id: "bioetica", nombre: "Bioética", semestre: 5, reqs: ["epid_estad"] },
-  { id: "bioquim_broma", nombre: "Bioquímica de los Alimentos y Bromatología", semestre: 5, reqs: ["higiene_inocuidad"] },
-  { id: "tec_dietetica", nombre: "Técnicas Dietéticas y Planificación Alimentaria", semestre: 5, reqs: ["higiene_inocuidad"] },
-  { id: "eval_nutri_i", nombre: "Evaluación Nutricional I", semestre: 5, reqs: ["bioquim_ii", "fisiol_nutri"] },
-  { id: "edu_salud", nombre: "Educación para Salud", semestre: 5, reqs: ["antrop_alim"] },
-  { id: "persona_sentido", nombre: "Persona y Sentido", semestre: 5, reqs: ["electivo_fg_iii"] },
+  // --- QUINTO SEMESTRE ---
+  { id: "bioetica", nombre: "Bioética", semestre: 5, reqs: ["epid"] },
+  { id: "bromatologia", nombre: "Bioquímica de los Alimentos y Bromatología", semestre: 5, reqs: ["higiene"] },
+  { id: "tecnicas", nombre: "Técnicas Dietéticas y Planificación Alimentaria", semestre: 5, reqs: ["higiene"] },
+  { id: "evalnut1", nombre: "Evaluación Nutricional I", semestre: 5, reqs: ["bioq2", "fisio_nut"] },
+  { id: "educ_salud", nombre: "Educación para Salud", semestre: 5, reqs: ["antro_alim"] },
+  { id: "persona_sentido", nombre: "Persona y Sentido", semestre: 5, reqs: ["electivo3"] },
 
-  { id: "metod_inv", nombre: "Metodología de la investigación", semestre: 6, reqs: ["bioetica"] },
-  { id: "gest_alim_i", nombre: "Gestión de Unidades de Producción Alimentaria I", semestre: 6, reqs: ["bioquim_broma", "tec_dietetica"] },
-  { id: "fisio_diet_i", nombre: "Fisiopatología y Dietoterapia I", semestre: 6, reqs: ["eval_nutri_i"] },
-  { id: "eval_nutri_ii", nombre: "Evaluación Nutricional II", semestre: 6, reqs: ["eval_nutri_i"] },
-  { id: "alim_norm_vid", nombre: "Alimentación Normal en el Curso de la Vida", semestre: 6, reqs: ["edu_salud"] },
-  { id: "electivo_i", nombre: "Electivo I", semestre: 6, reqs: ["persona_sentido"] },
+  // --- SEXTO SEMESTRE ---
+  { id: "met_invest", nombre: "Metodología de la investigación", semestre: 6, reqs: ["bioetica"] },
+  { id: "gestion1", nombre: "Gestión de Unidades de Producción Alimentaria I", semestre: 6, reqs: ["bromatologia", "tecnicas"] },
+  { id: "fisiopato1", nombre: "Fisiopatología y Dietoterapia I", semestre: 6, reqs: ["evalnut1"] },
+  { id: "evalnut2", nombre: "Evaluación Nutricional II", semestre: 6, reqs: ["evalnut1"] },
+  { id: "alimentacion_curso_vida", nombre: "Alimentación Normal en el Curso de la Vida", semestre: 6, reqs: ["educ_salud"] },
+  { id: "electivo4", nombre: "Electivo I", semestre: 6, reqs: ["persona_sentido"] },
 
-  { id: "semin_inv_i", nombre: "Seminario de Investigación I", semestre: 7, reqs: ["metod_inv"] },
-  { id: "gest_alim_ii", nombre: "Gestión de Unidades de Producción Alimentaria II", semestre: 7, reqs: ["gest_alim_i"] },
-  { id: "fisio_diet_ii", nombre: "Fisiopatología y Dietoterapia II", semestre: 7, reqs: ["fisio_diet_i"] },
-  { id: "dis_proy_salud", nombre: "Diseño de Proyectos de Intervención en Salud", semestre: 7, reqs: ["alim_norm_vid"] },
-  { id: "pol_prog_salud", nombre: "Políticas y Programas de Salud", semestre: 7, reqs: ["alim_norm_vid"] },
-  { id: "electivo_ii", nombre: "Electivo II", semestre: 7, reqs: ["electivo_i"] },
+  // --- SEPTIMO SEMESTRE ---
+  { id: "sem_invest1", nombre: "Seminario de Investigación I", semestre: 7, reqs: ["met_invest"] },
+  { id: "gestion2", nombre: "Gestión de Unidades de Producción Alimentaria II", semestre: 7, reqs: ["gestion1"] },
+  { id: "fisiopato2", nombre: "Fisiopatología y Dietoterapia II", semestre: 7, reqs: ["fisiopato1"] },
+  { id: "diseno_intervencion", nombre: "Diseño de Proyectos de Intervención en Salud", semestre: 7, reqs: ["alimentacion_curso_vida"] },
+  { id: "politicas", nombre: "Políticas y Programas de Salud", semestre: 7, reqs: ["alimentacion_curso_vida"] },
+  { id: "electivo5", nombre: "Electivo II", semestre: 7, reqs: ["electivo4"] },
 
-  { id: "semin_inv_ii", nombre: "Seminario de Investigación II", semestre: 8, reqs: ["semin_inv_i"] },
-  { id: "pract_gest_alim", nombre: "Practica de Gestión de Unidades de Producción Alimentaria", semestre: 8, reqs: ["gest_alim_ii"] },
-  { id: "fisio_diet_iii", nombre: "Fisiopatología y Dietoterapia III", semestre: 8, reqs: ["fisio_diet_ii"] },
-  { id: "interv_alim_nutri", nombre: "Intervención Alimentaria Nutricional", semestre: 8, reqs: ["dis_proy_salud", "pol_prog_salud"] },
-  { id: "electivo_iii", nombre: "Electivo III", semestre: 8, reqs: ["electivo_ii"] },
+  // --- OCTAVO SEMESTRE ---
+  { id: "sem_invest2", nombre: "Seminario de Investigación II", semestre: 8, reqs: ["sem_invest1"] },
+  { id: "practica_gestion", nombre: "Práctica de Gestión de Unidades de Producción Alimentaria", semestre: 8, reqs: ["gestion2"] },
+  { id: "fisiopato3", nombre: "Fisiopatología y Dietoterapia III", semestre: 8, reqs: ["fisiopato2"] },
+  { id: "intervencion", nombre: "Intervención Alimentaria Nutricional", semestre: 8, reqs: ["diseno_intervencion", "politicas"] },
+  { id: "electivo6", nombre: "Electivo III", semestre: 8, reqs: ["electivo5"] },
 
-  { id: "intern_nut_clin", nombre: "Internado Profesional Nutrición Clínica", semestre: 9, reqs: ["fisio_diet_iii"] },
-  { id: "intern_nut_comu", nombre: "Internado Profesional Nutrición Comunitaria Interescolar", semestre: 9, reqs: ["interv_alim_nutri"] },
+  // --- NOVENO SEMESTRE ---
+  { id: "internado_clinico", nombre: "Internado Profesional Nutrición Clínica", semestre: 9, reqs: ["fisiopato3"] },
+  { id: "internado_comunitario_i", nombre: "Internado Profesional Nutrición Comunitaria Interescolar", semestre: 9, reqs: ["intervencion"] },
 
-  { id: "intern_gest_alim", nombre: "Internado Profesional Gestión de Unidades de Producción Alimentaria", semestre: 10, reqs: ["pract_gest_alim"] },
-  { id: "intern_nut_comu2", nombre: "Internado Profesional Nutrición Comunitaria", semestre: 10, reqs: ["intern_nut_comu"] }
+  // --- DECIMO SEMESTRE ---
+  { id: "internado_gestion", nombre: "Internado Profesional Gestión de Unidades de Producción Alimentaria", semestre: 10, reqs: ["practica_gestion"] },
+  { id: "internado_comunitario", nombre: "Internado Profesional Nutrición Comunitaria", semestre: 10, reqs: ["internado_comunitario_i"] }
 ];
 
-// Estado de materias aprobadas (por id)
+// Agrupa materias por semestre
+function agruparPorSemestre(materias) {
+  const grupos = {};
+  materias.forEach(m => {
+    if (!grupos[m.semestre]) grupos[m.semestre] = [];
+    grupos[m.semestre].push(m);
+  });
+  return grupos;
+}
+
 let aprobadas = {};
 
 function guardarEstado() {
@@ -70,90 +89,62 @@ function guardarEstado() {
 
 function cargarEstado() {
   const data = localStorage.getItem("aprobadas");
-  if (data) {
-    aprobadas = JSON.parse(data);
-  }
+  if (data) aprobadas = JSON.parse(data);
 }
 
-function puedeAprobar(materia) {
-  // Verifica que todas las materias requeridas estén aprobadas
+function requisitosAprobados(materia) {
   return materia.reqs.every(req => aprobadas[req]);
 }
 
-function actualizarUI() {
-  materias.forEach(materia => {
-    const elem = document.getElementById(materia.id);
-    const btn = elem.querySelector("button");
-    if (aprobadas[materia.id]) {
-      elem.classList.add("aprobada");
-      elem.classList.remove("locked");
-      btn.textContent = "Desmarcar";
-      btn.disabled = false;
-    } else {
-      elem.classList.remove("aprobada");
-      if (puedeAprobar(materia)) {
-        elem.classList.remove("locked");
-        btn.disabled = false;
-        btn.textContent = "Aprobar";
-      } else {
-        elem.classList.add("locked");
-        btn.disabled = true;
-        btn.textContent = "Aprobar";
-      }
-    }
+function renderizarMalla() {
+  const contenedor = document.getElementById("malla-container");
+  contenedor.innerHTML = "";
+
+  const grupos = agruparPorSemestre(materias);
+  Object.keys(grupos).sort((a, b) => a - b).forEach(semestre => {
+    const grupoDiv = document.createElement("div");
+    grupoDiv.classList.add("semestre-section");
+
+    const titulo = document.createElement("div");
+    titulo.classList.add("semestre-title");
+    titulo.textContent = `Semestre ${semestre}`;
+    grupoDiv.appendChild(titulo);
+
+    const grid = document.createElement("div");
+    grid.classList.add("semestre-grid");
+
+    grupos[semestre].forEach(m => {
+      const div = document.createElement("div");
+      div.classList.add("materia");
+      if (!requisitosAprobados(m)) div.classList.add("locked");
+      if (aprobadas[m.id]) div.classList.add("aprobada");
+
+      const nombre = document.createElement("div");
+      nombre.classList.add("titulo");
+      nombre.textContent = m.nombre;
+
+      const boton = document.createElement("button");
+      boton.classList.add("aprobar-btn");
+      boton.textContent = aprobadas[m.id] ? "Desmarcar" : "Aprobar";
+      boton.disabled = !requisitosAprobados(m);
+
+      boton.addEventListener("click", e => {
+        e.stopPropagation();
+        aprobadas[m.id] = !aprobadas[m.id];
+        guardarEstado();
+        renderizarMalla();
+      });
+
+      div.appendChild(nombre);
+      div.appendChild(boton);
+      grid.appendChild(div);
+    });
+
+    grupoDiv.appendChild(grid);
+    contenedor.appendChild(grupoDiv);
   });
 }
 
-function toggleAprobar(id) {
-  if (aprobadas[id]) {
-    // Desmarcar aprobada
-    aprobadas[id] = false;
-    delete aprobadas[id];
-  } else {
-    // Solo permitir aprobar si se puede
-    const materia = materias.find(m => m.id === id);
-    if (puedeAprobar(materia)) {
-      aprobadas[id] = true;
-    } else {
-      return;
-    }
-  }
-  guardarEstado();
-  actualizarUI();
-}
-
-function crearMateriaElem(materia) {
-  const div = document.createElement("div");
-  div.classList.add("materia");
-  div.id = materia.id;
-
-  const titulo = document.createElement("div");
-  titulo.classList.add("titulo");
-  titulo.title = materia.nombre;
-  titulo.textContent = materia.nombre;
-  div.appendChild(titulo);
-
-  const semestre = document.createElement("div");
-  semestre.classList.add("semestre");
-  semestre.textContent = `Semestre ${materia.semestre}`;
-  div.appendChild(semestre);
-
-  const btn = document.createElement("button");
-  btn.classList.add("aprobar-btn");
-  btn.addEventListener("click", () => toggleAprobar(materia.id));
-  div.appendChild(btn);
-
-  return div;
-}
-
-function init() {
-  cargarEstado();
-  const container = document.getElementById("malla-container");
-  materias.forEach(materia => {
-    const elem = crearMateriaElem(materia);
-    container.appendChild(elem);
-  });
-  actualizarUI();
-}
-
-window.onload = init;
+// Inicializa
+cargarEstado();
+renderizarMalla();
