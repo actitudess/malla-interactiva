@@ -1,241 +1,43 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Malla Interactiva Nutrición</title>
-  <link rel="stylesheet" href="style.css" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Malla Interactiva</title>
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Malla Curricular Nutrición</h1>
-  <div id="malla-container">
 
-    <!-- PRIMER SEMESTRE -->
-    <div class="materia" data-materia="Razonamiento Lógico Matemático">
-      <div class="titulo">Razonamiento Lógico Matemático</div>
-      <div class="semestre">1er Semestre</div>
-    </div>
-    <div class="materia" data-materia="Introducción a la Nutrición y Dietética">
-      <div class="titulo">Introducción a la Nutrición y Dietética</div>
-      <div class="semestre">1er Semestre</div>
-    </div>
-    <div class="materia" data-materia="Bases de la Química">
-      <div class="titulo">Bases de la Química</div>
-      <div class="semestre">1er Semestre</div>
-    </div>
-    <div class="materia" data-materia="Psicología de la Salud">
-      <div class="titulo">Psicología de la Salud</div>
-      <div class="semestre">1er Semestre</div>
-    </div>
-    <div class="materia" data-materia="Taller Integrado en Ciencias">
-      <div class="titulo">Taller Integrado en Ciencias</div>
-      <div class="semestre">1er Semestre</div>
-    </div>
-    <div class="materia" data-materia="Taller de Competencias Comunicativas">
-      <div class="titulo">Taller de Competencias Comunicativas</div>
-      <div class="semestre">1er Semestre</div>
-    </div>
+<h1>Malla Interactiva</h1>
 
-    <!-- SEGUNDO SEMESTRE -->
-    <div class="materia" data-materia="Ciencias de los Alimentos">
-      <div class="titulo">Ciencias de los Alimentos</div>
-      <div class="semestre">2do Semestre</div>
-    </div>
-    <div class="materia" data-materia="Biología Celular">
-      <div class="titulo">Biología Celular</div>
-      <div class="semestre">2do Semestre</div>
-    </div>
-    <div class="materia" data-materia="Química de las biomoléculas">
-      <div class="titulo">Química de las biomoléculas</div>
-      <div class="semestre">2do Semestre</div>
-    </div>
-    <div class="materia" data-materia="Atención Básica de Urgencia">
-      <div class="titulo">Atención Básica de Urgencia</div>
-      <div class="semestre">2do Semestre</div>
-    </div>
-    <div class="materia" data-materia="Ingles Básico I">
-      <div class="titulo">Ingles Básico I</div>
-      <div class="semestre">2do Semestre</div>
-    </div>
-    <div class="materia" data-materia="Electivo Formación General I">
-      <div class="titulo">Electivo Formación General I</div>
-      <div class="semestre">2do Semestre</div>
-    </div>
-
-    <!-- TERCER SEMESTRE -->
-    <div class="materia" data-materia="Microbiología y Parasitología Alimentaria">
-      <div class="titulo">Microbiología y Parasitología Alimentaria</div>
-      <div class="semestre">3er Semestre</div>
-    </div>
-    <div class="materia" data-materia="Anatomofisiologia General">
-      <div class="titulo">Anatomofisiologia General</div>
-      <div class="semestre">3er Semestre</div>
-    </div>
-    <div class="materia" data-materia="Bioquímica Nutricional I">
-      <div class="titulo">Bioquímica Nutricional I</div>
-      <div class="semestre">3er Semestre</div>
-    </div>
-    <div class="materia" data-materia="Salud y Sociedad">
-      <div class="titulo">Salud y Sociedad</div>
-      <div class="semestre">3er Semestre</div>
-    </div>
-    <div class="materia" data-materia="Ingles Básico II">
-      <div class="titulo">Ingles Básico II</div>
-      <div class="semestre">3er Semestre</div>
-    </div>
-    <div class="materia" data-materia="Electivo Formación General II">
-      <div class="titulo">Electivo Formación General II</div>
-      <div class="semestre">3er Semestre</div>
-    </div>
-
-    <!-- CUARTO SEMESTRE -->
-    <div class="materia" data-materia="Epidemiología y Estadística">
-      <div class="titulo">Epidemiología y Estadística</div>
-      <div class="semestre">4to Semestre</div>
-    </div>
-    <div class="materia" data-materia="Higiene e Inocuidad Alimentaria">
-      <div class="titulo">Higiene e Inocuidad Alimentaria</div>
-      <div class="semestre">4to Semestre</div>
-    </div>
-    <div class="materia" data-materia="Bioquímica Nutricional II">
-      <div class="titulo">Bioquímica Nutricional II</div>
-      <div class="semestre">4to Semestre</div>
-    </div>
-    <div class="materia" data-materia="Fisiología Nutricional y del Comportamiento Alimentario">
-      <div class="titulo">Fisiología Nutricional y del Comportamiento Alimentario</div>
-      <div class="semestre">4to Semestre</div>
-    </div>
-    <div class="materia" data-materia="Antropología Alimentaria">
-      <div class="titulo">Antropología Alimentaria</div>
-      <div class="semestre">4to Semestre</div>
-    </div>
-    <div class="materia" data-materia="Electivo Formación General III">
-      <div class="titulo">Electivo Formación General III</div>
-      <div class="semestre">4to Semestre</div>
-    </div>
-
-    <!-- QUINTO SEMESTRE -->
-    <div class="materia" data-materia="Bioética">
-      <div class="titulo">Bioética</div>
-      <div class="semestre">5to Semestre</div>
-    </div>
-    <div class="materia" data-materia="Bioquímica de los Alimentos y Bromatología">
-      <div class="titulo">Bioquímica de los Alimentos y Bromatología</div>
-      <div class="semestre">5to Semestre</div>
-    </div>
-    <div class="materia" data-materia="Técnicas Dietéticas y Planificación Alimentaría">
-      <div class="titulo">Técnicas Dietéticas y Planificación Alimentaría</div>
-      <div class="semestre">5to Semestre</div>
-    </div>
-    <div class="materia" data-materia="Evaluación Nutricional I">
-      <div class="titulo">Evaluación Nutricional I</div>
-      <div class="semestre">5to Semestre</div>
-    </div>
-    <div class="materia" data-materia="Educación para Salud">
-      <div class="titulo">Educación para Salud</div>
-      <div class="semestre">5to Semestre</div>
-    </div>
-    <div class="materia" data-materia="Persona y Sentido">
-      <div class="titulo">Persona y Sentido</div>
-      <div class="semestre">5to Semestre</div>
-    </div>
-
-    <!-- SEXTO SEMESTRE -->
-    <div class="materia" data-materia="Metodología de la investigación">
-      <div class="titulo">Metodología de la investigación</div>
-      <div class="semestre">6to Semestre</div>
-    </div>
-    <div class="materia" data-materia="Gestión de Unidades de Producción Alimentaria I">
-      <div class="titulo">Gestión de Unidades de Producción Alimentaria I</div>
-      <div class="semestre">6to Semestre</div>
-    </div>
-    <div class="materia" data-materia="Fisiopatología y Dietoterapia I">
-      <div class="titulo">Fisiopatología y Dietoterapia I</div>
-      <div class="semestre">6to Semestre</div>
-    </div>
-    <div class="materia" data-materia="Evaluación Nutricional II">
-      <div class="titulo">Evaluación Nutricional II</div>
-      <div class="semestre">6to Semestre</div>
-    </div>
-    <div class="materia" data-materia="Alimentación Normal en el Curso de la Vida">
-      <div class="titulo">Alimentación Normal en el Curso de la Vida</div>
-      <div class="semestre">6to Semestre</div>
-    </div>
-    <div class="materia" data-materia="Electivo I">
-      <div class="titulo">Electivo I</div>
-      <div class="semestre">6to Semestre</div>
-    </div>
-
-    <!-- SÉPTIMO SEMESTRE -->
-    <div class="materia" data-materia="Seminario de Investigación I">
-      <div class="titulo">Seminario de Investigación I</div>
-      <div class="semestre">7mo Semestre</div>
-    </div>
-    <div class="materia" data-materia="Gestión de Unidades de Producción Alimentaría II">
-      <div class="titulo">Gestión de Unidades de Producción Alimentaría II</div>
-      <div class="semestre">7mo Semestre</div>
-    </div>
-    <div class="materia" data-materia="Fisiopatología y Dietoterapia II">
-      <div class="titulo">Fisiopatología y Dietoterapia II</div>
-      <div class="semestre">7mo Semestre</div>
-    </div>
-    <div class="materia" data-materia="Diseño de Proyectos de Intervención en Salud">
-      <div class="titulo">Diseño de Proyectos de Intervención en Salud</div>
-      <div class="semestre">7mo Semestre</div>
-    </div>
-    <div class="materia" data-materia="Políticas y Programas de Salud">
-      <div class="titulo">Políticas y Programas de Salud</div>
-      <div class="semestre">7mo Semestre</div>
-    </div>
-    <div class="materia" data-materia="Electivo II">
-      <div class="titulo">Electivo II</div>
-      <div class="semestre">7mo Semestre</div>
-    </div>
-
-    <!-- OCTAVO SEMESTRE -->
-    <div class="materia" data-materia="Seminario de Investigación II">
-      <div class="titulo">Seminario de Investigación II</div>
-      <div class="semestre">8vo Semestre</div>
-    </div>
-    <div class="materia" data-materia="Practica de Gestión de Unidades de Producción Alimentaria">
-      <div class="titulo">Practica de Gestión de Unidades de Producción Alimentaria</div>
-      <div class="semestre">8vo Semestre</div>
-    </div>
-    <div class="materia" data-materia="Fisiopatología y Dietoterapia III">
-      <div class="titulo">Fisiopatología y Dietoterapia III</div>
-      <div class="semestre">8vo Semestre</div>
-    </div>
-    <div class="materia" data-materia="Intervención Alimentaría Nutricional">
-      <div class="titulo">Intervención Alimentaría Nutricional</div>
-      <div class="semestre">8vo Semestre</div>
-    </div>
-    <div class="materia" data-materia="Electivo III">
-      <div class="titulo">Electivo III</div>
-      <div class="semestre">8vo Semestre</div>
-    </div>
-
-    <!-- NOVENO SEMESTRE -->
-    <div class="materia" data-materia="Internado Profesional Nutrición Clínica">
-      <div class="titulo">Internado Profesional Nutrición Clínica</div>
-      <div class="semestre">9no Semestre</div>
-    </div>
-    <div class="materia" data-materia="Internado Profesional Nutrición Comunitaria Interescolar">
-      <div class="titulo">Internado Profesional Nutrición Comunitaria Interescolar</div>
-      <div class="semestre">9no Semestre</div>
-    </div>
-
-    <!-- DÉCIMO SEMESTRE -->
-    <div class="materia" data-materia="Internado Profesional Gestión de Unidades de Producción Alimentaría">
-      <div class="titulo">Internado Profesional Gestión de Unidades de Producción Alimentaría</div>
-      <div class="semestre">10mo Semestre</div>
-    </div>
-    <div class="materia" data-materia="Internado Profesional Nutricion Comunitaria">
-      <div class="titulo">Internado Profesional Nutricion Comunitaria</div>
-      <div class="semestre">10mo Semestre</div>
-    </div>
-
+<div id="malla-container">
+  <div class="materia" id="mat1">
+    <div class="titulo">Ejemplo Materia 1</div>
+    <div class="semestre">Semestre 1</div>
+    <button class="aprobar-btn">Aprobar</button>
   </div>
+  <div class="materia locked" id="mat2">
+    <div class="titulo">Ejemplo Materia 2 (Locked)</div>
+    <div class="semestre">Semestre 2</div>
+    <button class="aprobar-btn" disabled>Aprobar</button>
+  </div>
+</div>
 
-  <script src="script.js"></script>
+<script>
+  // Solo un botón para probar
+  document.querySelectorAll('.aprobar-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const mat = btn.parentElement;
+      if(mat.classList.contains('aprobada')){
+        mat.classList.remove('aprobada');
+        btn.textContent = 'Aprobar';
+      } else {
+        mat.classList.add('aprobada');
+        btn.textContent = 'Desmarcar';
+      }
+    });
+  });
+</script>
+
 </body>
 </html>
