@@ -65,7 +65,7 @@ const materias = [
 // Estado de materias aprobadas guardado en localStorage (para mantener estado al recargar)
 let aprobadas = JSON.parse(localStorage.getItem("aprobadas") || "{}");
 
-// Crea la malla en el DOM
+// Contenedor
 const mallaContainer = document.getElementById("malla-container");
 
 function puedeDesbloquear(materia) {
@@ -75,8 +75,9 @@ function puedeDesbloquear(materia) {
 
 function actualizarMalla() {
   mallaContainer.innerHTML = "";
+
   materias.forEach(materia => {
-    // Crear el div materia
+    // Crear div materia
     const divMateria = document.createElement("div");
     divMateria.classList.add("materia");
     divMateria.id = materia.id;
@@ -101,10 +102,39 @@ function actualizarMalla() {
     semestre.classList.add("semestre");
     semestre.textContent = `Semestre ${materia.semestre}`;
 
+    // Botón aprobar / desmarcar
     const btn = document.createElement("button");
     btn.classList.add("aprobar-btn");
 
     if (aprobadas[materia.id]) {
       btn.textContent = "Desmarcar";
+      btn.disabled = false;
     } else if (divMateria.classList.contains("locked")) {
-      btn.textContent = "Blo
+      btn.textContent = "Bloqueado";
+      btn.disabled = true;
+    } else {
+      btn.textContent = "Aprobar";
+      btn.disabled = false;
+    }
+
+    btn.addEventListener("click", () => {
+      if (aprobadas[materia.id]) {
+        // Desmarcar
+        delete aprobadas[materia.id];
+      } else {
+        // Aprobar
+        aprobadas[materia.id] = true;
+      }
+      localStorage.setItem("aprobadas", JSON.stringify(aprobadas));
+      actualizarMalla();
+    });
+
+    divMateria.appendChild(titulo);
+    divMateria.appendChild(semestre);
+    divMateria.appendChild(btn);
+
+    mallaContainer.appendChild(divMateria);
+  });
+}
+
+actualizarMalla();
