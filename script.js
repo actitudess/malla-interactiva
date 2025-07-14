@@ -1,4 +1,3 @@
-// Datos de materias y requisitos
 const materias = [
   { id: "rlogmat", nombre: "Razonamiento Lógico Matemático", semestre: 1, reqs: [] },
   { id: "intro_nutri", nombre: "Introducción a la Nutrición y Dietética", semestre: 1, reqs: [] },
@@ -39,102 +38,122 @@ const materias = [
   { id: "gest_alim_i", nombre: "Gestión de Unidades de Producción Alimentaria I", semestre: 6, reqs: ["bioquim_broma", "tec_dietetica"] },
   { id: "fisio_diet_i", nombre: "Fisiopatología y Dietoterapia I", semestre: 6, reqs: ["eval_nutri_i"] },
   { id: "eval_nutri_ii", nombre: "Evaluación Nutricional II", semestre: 6, reqs: ["eval_nutri_i"] },
-  { id: "alim_normal_vida", nombre: "Alimentación Normal en el Curso de la Vida", semestre: 6, reqs: ["edu_salud"] },
+  { id: "alim_norm_vid", nombre: "Alimentación Normal en el Curso de la Vida", semestre: 6, reqs: ["edu_salud"] },
   { id: "electivo_i", nombre: "Electivo I", semestre: 6, reqs: ["persona_sentido"] },
 
   { id: "semin_inv_i", nombre: "Seminario de Investigación I", semestre: 7, reqs: ["metod_inv"] },
   { id: "gest_alim_ii", nombre: "Gestión de Unidades de Producción Alimentaria II", semestre: 7, reqs: ["gest_alim_i"] },
   { id: "fisio_diet_ii", nombre: "Fisiopatología y Dietoterapia II", semestre: 7, reqs: ["fisio_diet_i"] },
-  { id: "disen_proy_salud", nombre: "Diseño de Proyectos de Intervención en Salud", semestre: 7, reqs: ["alim_normal_vida"] },
-  { id: "polit_prog_salud", nombre: "Políticas y Programas de Salud", semestre: 7, reqs: ["alim_normal_vida"] },
+  { id: "dis_proy_salud", nombre: "Diseño de Proyectos de Intervención en Salud", semestre: 7, reqs: ["alim_norm_vid"] },
+  { id: "pol_prog_salud", nombre: "Políticas y Programas de Salud", semestre: 7, reqs: ["alim_norm_vid"] },
   { id: "electivo_ii", nombre: "Electivo II", semestre: 7, reqs: ["electivo_i"] },
 
   { id: "semin_inv_ii", nombre: "Seminario de Investigación II", semestre: 8, reqs: ["semin_inv_i"] },
-  { id: "pract_gest_alim", nombre: "Práctica de Gestión de Unidades de Producción Alimentaria", semestre: 8, reqs: ["gest_alim_ii"] },
+  { id: "pract_gest_alim", nombre: "Practica de Gestión de Unidades de Producción Alimentaria", semestre: 8, reqs: ["gest_alim_ii"] },
   { id: "fisio_diet_iii", nombre: "Fisiopatología y Dietoterapia III", semestre: 8, reqs: ["fisio_diet_ii"] },
-  { id: "interv_alim_nutri", nombre: "Intervención Alimentaria Nutricional", semestre: 8, reqs: ["disen_proy_salud", "polit_prog_salud"] },
+  { id: "interv_alim_nutri", nombre: "Intervención Alimentaria Nutricional", semestre: 8, reqs: ["dis_proy_salud", "pol_prog_salud"] },
   { id: "electivo_iii", nombre: "Electivo III", semestre: 8, reqs: ["electivo_ii"] },
 
-  { id: "internado_clinica", nombre: "Internado Profesional Nutrición Clínica", semestre: 9, reqs: ["fisio_diet_iii"] },
-  { id: "internado_comunitaria", nombre: "Internado Profesional Nutrición Comunitaria Interescolar", semestre: 9, reqs: ["interv_alim_nutri"] },
+  { id: "intern_nut_clin", nombre: "Internado Profesional Nutrición Clínica", semestre: 9, reqs: ["fisio_diet_iii"] },
+  { id: "intern_nut_comu", nombre: "Internado Profesional Nutrición Comunitaria Interescolar", semestre: 9, reqs: ["interv_alim_nutri"] },
 
-  { id: "internado_gestion", nombre: "Internado Profesional Gestión de Unidades de Producción Alimentaria", semestre: 10, reqs: ["pract_gest_alim"] },
-  { id: "internado_nutri_com", nombre: "Internado Profesional Nutrición Comunitaria", semestre: 10, reqs: ["internado_comunitaria"] },
+  { id: "intern_gest_alim", nombre: "Internado Profesional Gestión de Unidades de Producción Alimentaria", semestre: 10, reqs: ["pract_gest_alim"] },
+  { id: "intern_nut_comu2", nombre: "Internado Profesional Nutrición Comunitaria", semestre: 10, reqs: ["intern_nut_comu"] }
 ];
 
-// Estado de materias aprobadas guardado en localStorage (para mantener estado al recargar)
-let aprobadas = JSON.parse(localStorage.getItem("aprobadas") || "{}");
+// Estado de materias aprobadas (por id)
+let aprobadas = {};
 
-// Contenedor
-const mallaContainer = document.getElementById("malla-container");
-
-function puedeDesbloquear(materia) {
-  // Retorna true si todas las materias requisito están aprobadas
-  return materia.reqs.every(reqId => aprobadas[reqId]);
+function guardarEstado() {
+  localStorage.setItem("aprobadas", JSON.stringify(aprobadas));
 }
 
-function actualizarMalla() {
-  mallaContainer.innerHTML = "";
+function cargarEstado() {
+  const data = localStorage.getItem("aprobadas");
+  if (data) {
+    aprobadas = JSON.parse(data);
+  }
+}
 
+function puedeAprobar(materia) {
+  // Verifica que todas las materias requeridas estén aprobadas
+  return materia.reqs.every(req => aprobadas[req]);
+}
+
+function actualizarUI() {
   materias.forEach(materia => {
-    // Crear div materia
-    const divMateria = document.createElement("div");
-    divMateria.classList.add("materia");
-    divMateria.id = materia.id;
-
-    // Ver si está aprobada
+    const elem = document.getElementById(materia.id);
+    const btn = elem.querySelector("button");
     if (aprobadas[materia.id]) {
-      divMateria.classList.add("aprobada");
-    }
-
-    // Ver si está bloqueada (no cumple requisitos)
-    if (!puedeDesbloquear(materia) && !aprobadas[materia.id]) {
-      divMateria.classList.add("locked");
-    }
-
-    // Contenido
-    const titulo = document.createElement("div");
-    titulo.classList.add("titulo");
-    titulo.title = materia.nombre;
-    titulo.textContent = materia.nombre;
-
-    const semestre = document.createElement("div");
-    semestre.classList.add("semestre");
-    semestre.textContent = `Semestre ${materia.semestre}`;
-
-    // Botón aprobar / desmarcar
-    const btn = document.createElement("button");
-    btn.classList.add("aprobar-btn");
-
-    if (aprobadas[materia.id]) {
+      elem.classList.add("aprobada");
+      elem.classList.remove("locked");
       btn.textContent = "Desmarcar";
       btn.disabled = false;
-    } else if (divMateria.classList.contains("locked")) {
-      btn.textContent = "Bloqueado";
-      btn.disabled = true;
     } else {
-      btn.textContent = "Aprobar";
-      btn.disabled = false;
-    }
-
-    btn.addEventListener("click", () => {
-      if (aprobadas[materia.id]) {
-        // Desmarcar
-        delete aprobadas[materia.id];
+      elem.classList.remove("aprobada");
+      if (puedeAprobar(materia)) {
+        elem.classList.remove("locked");
+        btn.disabled = false;
+        btn.textContent = "Aprobar";
       } else {
-        // Aprobar
-        aprobadas[materia.id] = true;
+        elem.classList.add("locked");
+        btn.disabled = true;
+        btn.textContent = "Aprobar";
       }
-      localStorage.setItem("aprobadas", JSON.stringify(aprobadas));
-      actualizarMalla();
-    });
-
-    divMateria.appendChild(titulo);
-    divMateria.appendChild(semestre);
-    divMateria.appendChild(btn);
-
-    mallaContainer.appendChild(divMateria);
+    }
   });
 }
 
-actualizarMalla();
+function toggleAprobar(id) {
+  if (aprobadas[id]) {
+    // Desmarcar aprobada
+    aprobadas[id] = false;
+    delete aprobadas[id];
+  } else {
+    // Solo permitir aprobar si se puede
+    const materia = materias.find(m => m.id === id);
+    if (puedeAprobar(materia)) {
+      aprobadas[id] = true;
+    } else {
+      return;
+    }
+  }
+  guardarEstado();
+  actualizarUI();
+}
+
+function crearMateriaElem(materia) {
+  const div = document.createElement("div");
+  div.classList.add("materia");
+  div.id = materia.id;
+
+  const titulo = document.createElement("div");
+  titulo.classList.add("titulo");
+  titulo.title = materia.nombre;
+  titulo.textContent = materia.nombre;
+  div.appendChild(titulo);
+
+  const semestre = document.createElement("div");
+  semestre.classList.add("semestre");
+  semestre.textContent = `Semestre ${materia.semestre}`;
+  div.appendChild(semestre);
+
+  const btn = document.createElement("button");
+  btn.classList.add("aprobar-btn");
+  btn.addEventListener("click", () => toggleAprobar(materia.id));
+  div.appendChild(btn);
+
+  return div;
+}
+
+function init() {
+  cargarEstado();
+  const container = document.getElementById("malla-container");
+  materias.forEach(materia => {
+    const elem = crearMateriaElem(materia);
+    container.appendChild(elem);
+  });
+  actualizarUI();
+}
+
+window.onload = init;
