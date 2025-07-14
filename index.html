@@ -1,43 +1,17 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Malla Interactiva</title>
-<link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Malla Interactiva</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<h1>Malla Interactiva</h1>
+  <h1>Malla Interactiva - Carrera Nutrición</h1>
 
-<div id="malla-container">
-  <div class="materia" id="mat1">
-    <div class="titulo">Ejemplo Materia 1</div>
-    <div class="semestre">Semestre 1</div>
-    <button class="aprobar-btn">Aprobar</button>
-  </div>
-  <div class="materia locked" id="mat2">
-    <div class="titulo">Ejemplo Materia 2 (Locked)</div>
-    <div class="semestre">Semestre 2</div>
-    <button class="aprobar-btn" disabled>Aprobar</button>
-  </div>
-</div>
+  <div id="malla-container"></div>
 
-<script>
-  // Solo un botón para probar
-  document.querySelectorAll('.aprobar-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const mat = btn.parentElement;
-      if(mat.classList.contains('aprobada')){
-        mat.classList.remove('aprobada');
-        btn.textContent = 'Aprobar';
-      } else {
-        mat.classList.add('aprobada');
-        btn.textContent = 'Desmarcar';
-      }
-    });
-  });
-</script>
-
+  <script src="script.js"></script>
 </body>
 </html>
