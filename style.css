@@ -33,6 +33,7 @@ h1 {
   justify-content: space-between;
   height: 120px;
   box-shadow: 0 0 8px #ff99cc44;
+  position: relative;
 }
 
 .materia.locked {
@@ -75,8 +76,18 @@ button.aprobar-btn {
   font-size: 0.85rem;
   cursor: pointer;
   transition: background-color 0.3s;
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
 }
 
-button.aprobar-btn:hover {
+button.aprobar-btn:hover:not(:disabled) {
   background: #ff3399;
+}
+
+button.aprobar-btn:disabled {
+  background: #ffb3d9;
+  cursor: not-allowed;
 }
