@@ -12,16 +12,27 @@ h1 {
   color: #cc0066;
 }
 
-#malla-container {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 15px;
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 0 10px;
+.semestre-section {
+  margin-bottom: 40px;
 }
 
-/* Cuadro de materia */
+.semestre-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #cc0066;
+  margin-bottom: 10px;
+  text-align: left;
+  padding-left: 15px;
+}
+
+.semestre-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 15px;
+  justify-content: center;
+}
+
+/* Materia box */
 .materia {
   background: #ffd6e8;
   border: 2px solid #ff66b2;
@@ -66,12 +77,6 @@ h1 {
   text-overflow: ellipsis;
 }
 
-.materia .semestre {
-  font-size: 0.7rem;
-  font-style: italic;
-}
-
-/* Botón */
 button.aprobar-btn {
   background: #cc0052;
   border: none;
@@ -92,37 +97,18 @@ button.aprobar-btn:disabled {
   cursor: default;
 }
 
-/* Responsive */
-@media (max-width: 900px) {
-  #malla-container {
-    grid-template-columns: repeat(4, 1fr);
-  }
-}
-
 @media (max-width: 600px) {
-  #malla-container {
-    grid-template-columns: repeat(2, 1fr);
-  }
   .materia {
     height: 75px;
-    font-size: 0.78rem;
+    font-size: 0.75rem;
   }
+
   button.aprobar-btn {
     font-size: 0.7rem;
     padding: 3px 6px;
   }
-}
 
-@media (max-width: 400px) {
-  #malla-container {
-    grid-template-columns: 1fr;
-  }
-  .materia {
-    height: 70px;
-    font-size: 0.75rem;
-  }
-  button.aprobar-btn {
-    font-size: 0.65rem;
-    padding: 3px 5px;
+  .semestre-title {
+    font-size: 1rem;
   }
 }
