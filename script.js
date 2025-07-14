@@ -88,4 +88,23 @@ function actualizarMalla() {
 
     // Ver si está bloqueada (no cumple requisitos)
     if (!puedeDesbloquear(materia) && !aprobadas[materia.id]) {
-      divMateria.classList
+      divMateria.classList.add("locked");
+    }
+
+    // Contenido
+    const titulo = document.createElement("div");
+    titulo.classList.add("titulo");
+    titulo.title = materia.nombre;
+    titulo.textContent = materia.nombre;
+
+    const semestre = document.createElement("div");
+    semestre.classList.add("semestre");
+    semestre.textContent = `Semestre ${materia.semestre}`;
+
+    const btn = document.createElement("button");
+    btn.classList.add("aprobar-btn");
+
+    if (aprobadas[materia.id]) {
+      btn.textContent = "Desmarcar";
+    } else if (divMateria.classList.contains("locked")) {
+      btn.textContent = "Blo
