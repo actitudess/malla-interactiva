@@ -39,8 +39,9 @@ Este proyecto es libre para uso personal y educativo.
 
 ## Autor
 
-Creado por [Tu Nombre].
+Creado por Thiago.
 
 ---
 
 Si tienes sugerencias o mejoras, no dudes en contribuir o contactarme.
+nashe
