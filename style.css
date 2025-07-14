@@ -1,65 +1,82 @@
 body {
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #fff0f5;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #ffe6f0;
+  color: #330029;
   margin: 0;
   padding: 20px;
-  color: #333;
+  text-align: center;
 }
 
 h1 {
-  text-align: center;
-  color: #c2185b;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
+  color: #cc0066;
 }
 
-.semester-title {
-  grid-column: 1 / -1;
-  font-size: 1.6rem;
-  font-weight: bold;
-  margin: 25px 0 10px;
-  color: #c2185b;
-  text-align: left;
-  border-bottom: 2px solid #f48fb1;
-  padding-bottom: 5px;
-}
-
-#grid {
+#malla-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 12px;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 15px;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-.course {
-  background-color: #f8bbd0;
-  border: 2px solid #ec407a;
-  padding: 15px;
-  border-radius: 12px;
-  text-align: center;
-  font-weight: bold;
-  color: #333;
+.materia {
+  background: #ffd6e8;
+  border: 2px solid #ff66b2;
+  border-radius: 10px;
+  padding: 15px 10px;
   cursor: pointer;
-  transition: all 0.3s ease;
   user-select: none;
+  transition: background-color 0.3s, border-color 0.3s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 120px;
+  box-shadow: 0 0 8px #ff99cc44;
 }
 
-.course.locked {
-  background-color: #fce4ec;
-  color: #aaa;
-  border: 2px dashed #f8bbd0;
+.materia.locked {
+  background: #ffe6f0cc;
+  border-color: #ffb3d9;
+  color: #a04c72;
   cursor: not-allowed;
-  opacity: 0.6;
+  box-shadow: none;
 }
 
-.course.completed {
-  background-color: #eeeeee;
-  border-color: #bdbdbd;
-  color: #555;
-  text-decoration: line-through;
+.materia.aprobada {
+  background: #ff66b2;
+  border-color: #cc0052;
+  color: white;
+  box-shadow: 0 0 15px #cc0052aa;
 }
 
-.course:hover:not(.locked) {
-  background-color: #f48fb1;
-  transform: scale(1.02);
+.materia:hover:not(.locked):not(.aprobada) {
+  background: #ff99cc;
+  border-color: #ff3399;
+}
+
+.materia .titulo {
+  font-weight: 700;
+  font-size: 1rem;
+  margin-bottom: 10px;
+}
+
+.materia .semestre {
+  font-size: 0.8rem;
+  font-style: italic;
+}
+
+button.aprobar-btn {
+  background: #cc0052;
+  border: none;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button.aprobar-btn:hover {
+  background: #ff3399;
 }
