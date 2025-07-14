@@ -1,133 +1,141 @@
-// Datos de materias con requisitos
-const materias = [
-  // PRIMER SEMESTRE
-  { id: 'rlogmat', nombre: 'Razonamiento Lógico Matemático', semestre: 1, requisitos: [] },
-  { id: 'intro_nutri', nombre: 'Introducción a la Nutrición y Dietética', semestre: 1, requisitos: [] },
-  { id: 'bases_quim', nombre: 'Bases de la Química', semestre: 1, requisitos: [] },
-  { id: 'psic_salud', nombre: 'Psicología de la Salud', semestre: 1, requisitos: [] },
-  { id: 'taller_cien', nombre: 'Taller Integrado en Ciencias', semestre: 1, requisitos: [] },
-  { id: 'taller_com', nombre: 'Taller de Competencias Comunicativas', semestre: 1, requisitos: [] },
+document.addEventListener("DOMContentLoaded", () => {
+  const materias = {
+    "Razonamiento Lógico Matemático": [],
+    "Introducción a la Nutrición y Dietética": [],
+    "Bases de la Química": [],
+    "Psicología de la Salud": [],
+    "Taller Integrado en Ciencias": [],
+    "Taller de Competencias Comunicativas": [],
 
-  // SEGUNDO SEMESTRE
-  { id: 'cien_alim', nombre: 'Ciencias de los Alimentos', semestre: 2, requisitos: [] },
-  { id: 'bio_cel', nombre: 'Biología Celular', semestre: 2, requisitos: ['intro_nutri', 'bases_quim'] },
-  { id: 'quim_biom', nombre: 'Química de las biomoléculas', semestre: 2, requisitos: ['intro_nutri', 'bases_quim'] },
-  { id: 'atencion_urg', nombre: 'Atención Básica de Urgencia', semestre: 2, requisitos: [] },
-  { id: 'ingles_1', nombre: 'Inglés Básico I', semestre: 2, requisitos: [] },
-  { id: 'electivo_fg1', nombre: 'Electivo Formación General I', semestre: 2, requisitos: ['taller_com'] },
+    "Ciencias de los Alimentos": [],
+    "Biología Celular": ["Introducción a la Nutrición y Dietética", "Bases de la Química"],
+    "Química de las biomoléculas": ["Introducción a la Nutrición y Dietética", "Bases de la Química"],
+    "Atención Básica de Urgencia": [],
+    "Ingles Básico I": [],
+    "Electivo Formación General I": ["Taller de Competencias Comunicativas"],
 
-  // TERCER SEMESTRE
-  { id: 'micro_paras', nombre: 'Microbiología y Parasitología Alimentaria', semestre: 3, requisitos: ['cien_alim'] },
-  { id: 'anat_gen', nombre: 'Anatomofisiologia General', semestre: 3, requisitos: ['bio_cel', 'quim_biom'] },
-  { id: 'bioq_nutri1', nombre: 'Bioquímica Nutricional I', semestre: 3, requisitos: ['bio_cel', 'quim_biom'] },
-  { id: 'salud_soc', nombre: 'Salud y Sociedad', semestre: 3, requisitos: [] },
-  { id: 'ingles_2', nombre: 'Inglés Básico II', semestre: 3, requisitos: ['ingles_1'] },
-  { id: 'electivo_fg2', nombre: 'Electivo Formación General II', semestre: 3, requisitos: ['electivo_fg1'] },
+    "Microbiología y Parasitología Alimentaria": ["Ciencias de los Alimentos"],
+    "Anatomofisiologia General": ["Biología Celular", "Química de las biomoléculas"],
+    "Bioquímica Nutricional I": ["Biología Celular", "Química de las biomoléculas"],
+    "Salud y Sociedad": [],
+    "Ingles Básico II": ["Ingles Básico I"],
+    "Electivo Formación General II": ["Electivo Formación General I"],
 
-  // CUARTO SEMESTRE
-  { id: 'epi_estad', nombre: 'Epidemiología y Estadística', semestre: 4, requisitos: ['rlogmat'] },
-  { id: 'higiene_inocu', nombre: 'Higiene e Inocuidad Alimentaria', semestre: 4, requisitos: ['micro_paras'] },
-  { id: 'bioq_nutri2', nombre: 'Bioquímica Nutricional II', semestre: 4, requisitos: ['bioq_nutri1'] },
-  { id: 'fisio_nutri', nombre: 'Fisiología Nutricional y del Comportamiento Alimentario', semestre: 4, requisitos: ['anat_gen'] },
-  { id: 'antrop_alim', nombre: 'Antropología Alimentaria', semestre: 4, requisitos: [] },
-  { id: 'electivo_fg3', nombre: 'Electivo Formación General III', semestre: 4, requisitos: ['electivo_fg2'] },
+    "Epidemiología y Estadística": ["Razonamiento Lógico Matemático"],
+    "Higiene e Inocuidad Alimentaria": ["Microbiología y Parasitología Alimentaria"],
+    "Bioquímica Nutricional II": ["Bioquímica Nutricional I"],
+    "Fisiología Nutricional y del Comportamiento Alimentario": ["Anatomofisiologia General"],
+    "Antropología Alimentaria": [],
+    "Electivo Formación General III": ["Electivo Formación General II"],
 
-  // QUINTO SEMESTRE
-  { id: 'bioetica', nombre: 'Bioética', semestre: 5, requisitos: ['epi_estad'] },
-  { id: 'bioq_alim_broma', nombre: 'Bioquímica de los Alimentos y Bromatología', semestre: 5, requisitos: ['higiene_inocu'] },
-  { id: 'tecn_dietetica', nombre: 'Técnicas Dietéticas y Planificación Alimentaría', semestre: 5, requisitos: ['higiene_inocu'] },
-  { id: 'eval_nutri1', nombre: 'Evaluación Nutricional I', semestre: 5, requisitos: ['bioq_nutri2', 'fisio_nutri'] },
-  { id: 'edu_salud', nombre: 'Educación para Salud', semestre: 5, requisitos: ['antrop_alim'] },
-  { id: 'persona_sentido', nombre: 'Persona y Sentido', semestre: 5, requisitos: ['electivo_fg3'] },
+    "Bioética": ["Epidemiología y Estadística"],
+    "Bioquímica de los Alimentos y Bromatología": ["Higiene e Inocuidad Alimentaria"],
+    "Técnicas Dietéticas y Planificación Alimentaría": ["Higiene e Inocuidad Alimentaria"],
+    "Evaluación Nutricional I": ["Bioquímica Nutricional II", "Fisiología Nutricional y del Comportamiento Alimentario"],
+    "Educación para Salud": ["Antropología Alimentaria"],
+    "Persona y Sentido": ["Electivo Formación General III"],
 
-  // SEXTO SEMESTRE
-  { id: 'metod_inves', nombre: 'Metodología de la investigación', semestre: 6, requisitos: ['bioetica'] },
-  { id: 'gestion_uni_alim1', nombre: 'Gestión de Unidades de Producción Alimentaria I', semestre: 6, requisitos: ['bioq_alim_broma', 'tecn_dietetica'] },
-  { id: 'fisio_diet1', nombre: 'Fisiopatología y Dietoterapia I', semestre: 6, requisitos: ['eval_nutri1'] },
-  { id: 'eval_nutri2', nombre: 'Evaluación Nutricional II', semestre: 6, requisitos: ['eval_nutri1'] },
-  { id: 'alim_normal', nombre: 'Alimentación Normal en el Curso de la Vida', semestre: 6, requisitos: ['edu_salud'] },
-  { id: 'electivo_1', nombre: 'Electivo I', semestre: 6, requisitos: ['persona_sentido'] },
+    "Metodología de la investigación": ["Bioética"],
+    "Gestión de Unidades de Producción Alimentaria I": ["Bioquímica de los Alimentos y Bromatología", "Técnicas Dietéticas y Planificación Alimentaría"],
+    "Fisiopatología y Dietoterapia I": ["Evaluación Nutricional I"],
+    "Evaluación Nutricional II": ["Evaluación Nutricional I"],
+    "Alimentación Normal en el Curso de la Vida": ["Educación para Salud"],
+    "Electivo I": ["Persona y Sentido"],
 
-  // SEPTIMO SEMESTRE
-  { id: 'semin_inves_1', nombre: 'Seminario de Investigación I', semestre: 7, requisitos: ['metod_inves'] },
-  { id: 'gestion_uni_alim2', nombre: 'Gestión de Unidades de Producción Alimentaría II', semestre: 7, requisitos: ['gestion_uni_alim1'] },
-  { id: 'fisio_diet2', nombre: 'Fisiopatología y Dietoterapia II', semestre: 7, requisitos: ['fisio_diet1'] },
-  { id: 'disen_proy_salud', nombre: 'Diseño de Proyectos de Intervención en Salud', semestre: 7, requisitos: ['alim_normal'] },
-  { id: 'pol_prog_salud', nombre: 'Políticas y Programas de Salud', semestre: 7, requisitos: ['alim_normal'] },
-  { id: 'electivo_2', nombre: 'Electivo II', semestre: 7, requisitos: ['electivo_1'] },
+    "Seminario de Investigación I": ["Metodología de la investigación"],
+    "Gestión de Unidades de Producción Alimentaría II": ["Gestión de Unidades de Producción Alimentaria I"],
+    "Fisiopatología y Dietoterapia II": ["Fisiopatología y Dietoterapia I"],
+    "Diseño de Proyectos de Intervención en Salud": ["Alimentación Normal en el Curso de la Vida"],
+    "Políticas y Programas de Salud": ["Alimentación Normal en el Curso de la Vida"],
+    "Electivo II": ["Electivo I"],
 
-  // OCTAVO SEMESTRE
-  { id: 'semin_inves_2', nombre: 'Seminario de Investigación II', semestre: 8, requisitos: ['semin_inves_1'] },
-  { id: 'pract_gestion_uni_alim', nombre: 'Practica de Gestión de Unidades de Producción Alimentaria', semestre: 8, requisitos: ['gestion_uni_alim2'] },
-  { id: 'fisio_diet3', nombre: 'Fisiopatología y Dietoterapia III', semestre: 8, requisitos: ['fisio_diet2'] },
-  { id: 'interv_alim_nutri', nombre: 'Intervención Alimentaría Nutricional', semestre: 8, requisitos: ['disen_proy_salud', 'pol_prog_salud'] },
-  { id: 'electivo_3', nombre: 'Electivo III', semestre: 8, requisitos: ['electivo_2'] },
+    "Seminario de Investigación II": ["Seminario de Investigación I"],
+    "Practica de Gestión de Unidades de Producción Alimentaria": ["Gestión de Unidades de Producción Alimentaría II"],
+    "Fisiopatología y Dietoterapia III": ["Fisiopatología y Dietoterapia II"],
+    "Intervención Alimentaría Nutricional": ["Diseño de Proyectos de Intervención en Salud", "Políticas y Programas de Salud"],
+    "Electivo III": ["Electivo II"],
 
-  // NOVENO SEMESTRE
-  { id: 'internado_nutric_clin', nombre: 'Internado Profesional Nutrición Clínica', semestre: 9, requisitos: ['fisio_diet3'] },
-  { id: 'internado_nutric_com', nombre: 'Internado Profesional Nutrición Comunitaria Interescolar', semestre: 9, requisitos: ['interv_alim_nutri'] },
+    "Internado Profesional Nutrición Clínica": ["Fisiopatología y Dietoterapia III"],
+    "Internado Profesional Nutrición Comunitaria Interescolar": ["Intervención Alimentaría Nutricional"],
 
-  // DECIMO SEMESTRE
-  { id: 'internado_gestion_uni', nombre: 'Internado Profesional Gestión de Unidades de Producción Alimentaría', semestre: 10, requisitos: ['pract_gestion_uni_alim'] },
-  { id: 'internado_nutric_com2', nombre: 'Internado Profesional Nutricion Comunitaria', semestre: 10, requisitos: ['internado_nutric_com'] }
-];
+    "Internado Profesional Gestión de Unidades de Producción Alimentaría": ["Practica de Gestión de Unidades de Producción Alimentaria"],
+    "Internado Profesional Nutricion Comunitaria": ["Internado Profesional Nutrición Comunitaria Interescolar"]
+  };
 
-// Estado de materias aprobadas, se carga y guarda en localStorage para persistencia
-let aprobadas = JSON.parse(localStorage.getItem('materiasAprobadas') || '{}');
+  // Guardar y cargar estado con localStorage
+  const savedState = JSON.parse(localStorage.getItem("materiasEstado")) || {};
 
-// Referencia al contenedor
-const container = document.getElementById('malla-container');
+  const materiasEstado = {...savedState};
 
-// Crear los elementos en la malla
-function renderMaterias() {
-  container.innerHTML = '';
+  function puedeDesbloquear(materia) {
+    return materias[materia].every(req => materiasEstado[req]);
+  }
 
-  materias.forEach(materia => {
-    const div = document.createElement('div');
-    div.classList.add('materia');
+  function actualizarEstado() {
+    Object.keys(materiasEstado).forEach(materia => {
+      const boton = document.querySelector(`[data-materia="${materia}"] button`);
+      if (!boton) return;
 
-    // Estado: bloqueada o no
-    if (!puedeAprobar(materia)) {
-      div.classList.add('locked');
+      if (materiasEstado[materia]) {
+        boton.classList.add("aprobada");
+        boton.textContent = "Materia aprobada ✓";
+        boton.disabled = false;
+      } else {
+        // Se bloquea si no cumple requisitos
+        if (puedeDesbloquear(materia)) {
+          boton.disabled = false;
+          boton.classList.remove("aprobada");
+          boton.textContent = "Aprobar materia";
+        } else {
+          boton.disabled = true;
+          boton.classList.remove("aprobada");
+          boton.textContent = "Bloqueada";
+        }
+      }
+    });
+  }
+
+  // Al aprobar o desaprobar, actualizar estado y guardar
+  function toggleAprobada(materia) {
+    if (materiasEstado[materia]) {
+      // Si está aprobada, la desmarcamos
+      materiasEstado[materia] = false;
+
+      // Además, desmarcamos las materias que dependen directa o indirectamente de esta materia
+      desmarcarDependientes(materia);
+    } else {
+      // Si no estaba aprobada, la aprobamos solo si puede desbloquear
+      if (puedeDesbloquear(materia)) {
+        materiasEstado[materia] = true;
+      } else {
+        return; // No se puede aprobar si no cumple requisitos
+      }
     }
-    if (aprobadas[materia.id]) {
-      div.classList.add('aprobada');
-    }
+    actualizarEstado();
+    localStorage.setItem("materiasEstado", JSON.stringify(materiasEstado));
+  }
 
-    div.id = materia.id;
+  // Función recursiva para desmarcar dependientes
+  function desmarcarDependientes(materia) {
+    Object.keys(materias).forEach(m => {
+      if (materias[m].includes(materia) && materiasEstado[m]) {
+        materiasEstado[m] = false;
+        desmarcarDependientes(m);
+      }
+    });
+  }
 
-    // Título y semestre
-    div.innerHTML = `
-      <div class="titulo">${materia.nombre}</div>
-      <div class="semestre">Semestre ${materia.semestre}</div>
-    `;
+  // Crear la UI con botones y eventos
+  Object.keys(materias).forEach(materia => {
+    const contenedor = document.querySelector(`[data-materia="${materia}"]`);
+    if (!contenedor) return;
 
-    // Botón para aprobar si no está aprobada ni bloqueada
-    if (!aprobadas[materia.id] && puedeAprobar(materia)) {
-      const btn = document.createElement('button');
-      btn.textContent = 'Aprobar materia';
-      btn.className = 'aprobar-btn';
-      btn.addEventListener('click', () => {
-        aprobarMateria(materia.id);
-      });
-      div.appendChild(btn);
-    }
+    const boton = document.createElement("button");
+    boton.textContent = "Aprobar materia";
+    boton.addEventListener("click", () => toggleAprobada(materia));
 
-    container.appendChild(div);
+    contenedor.appendChild(boton);
   });
-}
 
-// Verifica si puede aprobar la materia (tiene todos sus requisitos aprobados)
-function puedeAprobar(materia) {
-  return materia.requisitos.every(req => aprobadas[req]);
-}
-
-// Función para aprobar materia y actualizar estado
-function aprobarMateria(id) {
-  aprobadas[id] = true;
-  localStorage.setItem('materiasAprobadas', JSON.stringify(aprobadas));
-  renderMaterias();
-}
-
-// Inicializar renderizado
-renderMaterias();
+  actualizarEstado();
+});
